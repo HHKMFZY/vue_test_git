@@ -1,6 +1,18 @@
 <script setup lang="ts">
+// @ts-nocheck
+import { ref, onMounted } from 'vue';
 import LayoutHeaderUl from './LayoutHeaderUl.vue'
+import { getCategoryAPI } from '@/apis/layout';
 // import HeaderCart from './HeaderCart.vue'
+const categoryList = ref([])
+const getCategory = async () => {
+  const res = await getCategoryAPI()
+  console.log(res)
+  categoryList.value = res.result
+}
+onMounted(() => {
+  getCategory()
+})
 </script>
 
 <template>
@@ -9,7 +21,12 @@ import LayoutHeaderUl from './LayoutHeaderUl.vue'
       <h1 class="logo">
         <RouterLink to="/">小兔鲜</RouterLink>
       </h1>
+      <ul class="app-header-nav">
+        <li class="home" v-for="item in categoryList" :key="item.id">
+          <RouterLink to="/">{{ item.name }}</RouterLink>
+        </li>
 
+      </ul>
       <LayoutHeaderUl />
       <div class="search">
         <i class="iconfont icon-search"></i>
@@ -18,7 +35,7 @@ import LayoutHeaderUl from './LayoutHeaderUl.vue'
       <!-- 头部购物车 -->
       <!-- <HeaderCart /> -->
     </div>
-</header>
+  </header>
 </template>
 
 
