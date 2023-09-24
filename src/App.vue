@@ -3,9 +3,8 @@
 </script>
 
 <template>
-  <header>
-    <el-button type="primary">Primary</el-button>
-  </header>
+  <!-- 一级路由出口组件 -->
+  <RouterView></RouterView>
 </template>
 
 <style scoped>
