@@ -144,7 +144,7 @@ const categoryStore = useCategoryStore()
         }
       }
 
-      // 关键样式  hover状态下的layer盒子变成block
+      // 关键样式  hover状态下的layer盒子变成block，链接 a 元素，在默认情况下是是“行内元素”，因此对a元素设置高度、宽度等属性，都是无效的，所以对于链接a来说只能这样：display:block;强制将它改成块元素，然后让其出现
       &:hover {
         .layer {
           display: block;
